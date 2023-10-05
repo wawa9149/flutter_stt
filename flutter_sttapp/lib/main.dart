@@ -52,6 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
         toFile: filePath,
         codec: Codec.aacADTS,
       );
+
       setState(() {
         _isRecording = true;
         _recordingPath = filePath;
