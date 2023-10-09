@@ -134,38 +134,6 @@ class _MyHomePageState extends State<MyHomePage> {
     return storageApi;
   }
 
-  // Future<void> uploadFileToGCS() async {
-  //   print('upload your file');
-  //   // 서비스 계정 키 파일의 경로
-  //   var client = await readApiKey();
-  //
-  //   // Google Cloud Storage 버킷 이름
-  //   var bucketName = 'speechtotext_app';
-  //
-  //   // Read audio file as bytes
-  //   File audioFile = File(_recordingPath);
-  //   List<int> audioData = await audioFile.readAsBytes();
-  //
-  //   // Create Stream from byte data
-  //   Stream<List<int>> audioDataStream = Stream.fromIterable([audioData]);
-  //
-  //   // Create Media from byte data stream
-  //   var media = storage.Media(audioDataStream, audioData.length, contentType: 'audio/aac');
-  //
-  //   String objectName = audioFile.uri.pathSegments.last;
-  //   print('objectName: $objectName');
-  //
-  //   storage.Object object = storage.Object();
-  //   object.name = objectName;
-  //
-  //   // 업로드할 파일의 Metadata를 설정합니다.
-  //   var metadata = storage.Object(name: objectName);
-  //
-  //   // Google Cloud Storage에 파일을 업로드합니다.
-  //   await client.objects.insert(metadata, bucketName, uploadMedia: media);
-  //   print('upload success');
-  // }
-
   Future<String> uploadFileToGCS() async {
     print('upload your file');
     // 서비스 계정 키 파일의 경로
