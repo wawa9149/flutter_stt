@@ -207,11 +207,6 @@ class MagoSttApi {
     // JSON 데이터 생성
     String jsonBody = '{"lang": "ko"}';
 
-    // var request = await http.MultipartRequest('POST', Uri.parse('${apiUrl}/batch/$id'))
-    //   ..headers['accept'] = 'application/json'
-    //   ..headers['Content-Type'] = 'application/json'
-    // ));
-
     // 요청 생성
     var request = await http.post(
       Uri.parse('$apiUrl/batch/$id'),
@@ -267,27 +262,6 @@ class MagoSttApi {
     // 작업이 완료되기 전까지 대기하지 않고 바로 반환
     return completer.future;
   }
-
-  // Future<String?> requestResult(http.Request request) async {
-  //   var client = http.Client();
-  //   String? jsonResult;
-  //
-  //   try {
-  //     var response = await client.send(request);
-  //
-  //     if (response.statusCode == 200) {
-  //       var responseBody = await response.stream.bytesToString();
-  //       print(responseBody);
-  //       jsonResult = getResultFromJson(responseBody);
-  //     } else {
-  //       print("API 요청 실패: ${response.statusCode}");
-  //     }
-  //   } finally {
-  //     client.close();
-  //   }
-  //
-  //   return jsonResult;
-  // }
 
   String? getResultFromJson(String jsonResponse, String status) {
     // JSON 문자열을 Map으로 변환
