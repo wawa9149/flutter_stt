@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_sound/flutter_sound.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:permission_handler/permission_handler.dart';
+//import 'package:permission_handler/permission_handler.dart';
 import 'package:uuid/uuid.dart';
 import 'dart:async';
 
@@ -12,6 +12,8 @@ import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
 
 import 'package:logger/logger.dart';
+
+//import 'dart:html' as html;
 
 class Recording extends StatefulWidget {
   const Recording({super.key});
@@ -36,7 +38,7 @@ class _RecordingState extends State<Recording> {
     _player = FlutterSoundPlayer();
     _recorder = FlutterSoundRecorder();
     _recordingPath = '';
-    permission();
+    //requestMicrophonePermission();
   }
 
   // 녹음 시작
@@ -46,19 +48,16 @@ class _RecordingState extends State<Recording> {
     _startRecording(generateFileName());
   }
 
-  Future<bool> permission() async {
-    // You can request multiple permissions at once.
-    Map<Permission, PermissionStatus> statuses = await [
-      Permission.microphone,
-      Permission.storage,
-    ].request();
-
-    if (statuses[Permission.microphone]!.isGranted && statuses[Permission.storage]!.isGranted) {
-      return true;
-    } else {
-      return false;
-    }
-  }
+  // void requestMicrophonePermission() async {
+  //   // 마이크 권한을 요청합니다.
+  //   var permissionStatus = await html.window.navigator.permissions?.request({'name': 'microphone'});
+  //
+  //   if (permissionStatus?.state == 'granted') {
+  //     print('마이크 권한이 허용되었습니다.');
+  //   } else {
+  //     print('마이크 권한이 거부되었습니다.');
+  //   }
+  // }
 
   // 녹음 중지
   void Reqest() async {
@@ -72,8 +71,7 @@ class _RecordingState extends State<Recording> {
     // 파일 이름 랜덤 생성
     // Returns
     // String formattedV4
-    var uuid = Uuid();
-    String v4 = '${uuid.v4()}.wav'; // 랜덤 UUID 생성
+    String v4 = '${const Uuid().v4()}.wav'; // 랜덤 UUID 생성
     String formattedV4 = v4.replaceAll('-', ''); // 하이픈 제거
     return formattedV4;
   }
